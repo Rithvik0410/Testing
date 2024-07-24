@@ -5,7 +5,7 @@ import "boxicons/css/boxicons.min.css";
 const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.location.href = "admin/*"; // Change 'homepage.html' to the actual homepage URL
+    window.location.href = "/admin.html"; // Change 'homepage.html' to the actual homepage URL
   };
 
   return (

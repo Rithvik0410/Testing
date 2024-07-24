@@ -18,7 +18,7 @@ const DesktopHomepage = () => {
         <button
           className="blinking-live"
           onClick={() =>
-            (window.location.href = "http://localhost:3000/seat-status")
+            (window.location.href = "http://localhost:3001/student.html")
           }
         >
           LIVE

@@ -1,26 +1,34 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import MenuManagement from "./MenuManagement";
-import OrderManagement from "./OrderManagement";
-import UserManagement from "./UserManagement";
+import { Link, Route, Routes } from "react-router-dom";
+import ManageUsers from "./ManageUsers";
+import ManageMenu from "./ManageMenu";
+import ManageOrders from "./ManageOrders";
 import SalesReports from "./SalesReports";
-import FeedbackManagement from "./FeedbackManagement";
-import "./adminDashboard.css"; // Add styles for the dashboard
+import Feedback from "./Feedback";
+import "./adminDashboard.css"; // Add custom styles for the dashboard
 
 const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
-      <Sidebar />
-      <div className="dashboard-content">
+      <header className="admin-header">
+        <h1>Admin Dashboard</h1>
+        <nav>
+          <Link to="/admin/manage-users">Manage Users</Link>
+          <Link to="/admin/manage-menu">Manage Menu</Link>
+          <Link to="/admin/manage-orders">Manage Orders</Link>
+          <Link to="/admin/sales-reports">Sales Reports</Link>
+          <Link to="/admin/feedback">Feedback</Link>
+        </nav>
+      </header>
+      <main>
         <Routes>
-          <Route path="menu" element={<MenuManagement />} />
-          <Route path="orders" element={<OrderManagement />} />
-          <Route path="users" element={<UserManagement />} />
-          <Route path="reports" element={<SalesReports />} />
-          <Route path="feedback" element={<FeedbackManagement />} />
+          <Route path="manage-users" element={<ManageUsers />} />
+          <Route path="manage-menu" element={<ManageMenu />} />
+          <Route path="manage-orders" element={<ManageOrders />} />
+          <Route path="sales-reports" element={<SalesReports />} />
+          <Route path="feedback" element={<Feedback />} />
         </Routes>
-      </div>
+      </main>
     </div>
   );
 };
