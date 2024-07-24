@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Track and Manage Orders</title>
+    <title>Generate and Analyze Sales Reports</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -23,40 +23,6 @@
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .order-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-      }
-
-      .order-table th,
-      .order-table td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-      }
-
-      .order-table th {
-        background: #f4f4f4;
-      }
-
-      .order-table td button {
-        background: #3498db;
-        color: #fff;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-
-      .order-table td button.update {
-        background: #2ecc71;
-      }
-
-      .order-table td button.delete {
-        background: #e74c3c;
       }
 
       .form-group {
@@ -88,115 +54,176 @@
       .form-group button:hover {
         background: #2980b9;
       }
+
+      .report-section {
+        margin-top: 20px;
+      }
+
+      .chart-container {
+        width: 100%;
+        height: 400px;
+        margin-top: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f4f4f4;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Track and Manage Orders</h1>
+      <h1>Generate and Analyze Sales Reports</h1>
 
-      <!-- Add Order Form -->
+      <!-- Report Generation Form -->
       <div class="form-group">
-        <label for="order-id">Order ID</label>
-        <input type="text" id="order-id" placeholder="Enter Order ID" />
+        <label for="start-date">Start Date</label>
+        <input type="date" id="start-date" />
       </div>
       <div class="form-group">
-        <label for="order-status">Order Status</label>
-        <select id="order-status">
-          <option value="pending">Pending</option>
-          <option value="in-progress">In Progress</option>
-          <option value="completed">Completed</option>
-          <option value="canceled">Canceled</option>
-        </select>
+        <label for="end-date">End Date</label>
+        <input type="date" id="end-date" />
       </div>
       <div class="form-group">
-        <button onclick="addOrder()">Add Order</button>
+        <button onclick="generateReport()">Generate Report</button>
       </div>
 
-      <!-- Orders List Table -->
-      <table class="order-table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="order-table-body">
-          <!-- Orders will be dynamically added here -->
-        </tbody>
-      </table>
+      <!-- Report Display Section -->
+      <div class="report-section" id="report-section" style="display: none">
+        <h2>Sales Report</h2>
+        <table id="report-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Item</th>
+              <th>Quantity Sold</th>
+              <th>Total Revenue (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Report data will be inserted here -->
+          </tbody>
+        </table>
+        <div class="chart-container" id="chart-container">
+          <!-- Chart.js chart will be rendered here -->
+        </div>
+      </div>
     </div>
 
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-      let orders = []; // This will store orders data
+      // Dummy data for the report
+      const salesData = [
+        {
+          date: "2024-07-01",
+          item: "Masala Dosa",
+          quantity: 30,
+          revenue: 1500,
+        },
+        { date: "2024-07-01", item: "Idli-Vada", quantity: 20, revenue: 800 },
+        { date: "2024-07-02", item: "Pani Puri", quantity: 25, revenue: 750 },
+        { date: "2024-07-02", item: "Bhel Puri", quantity: 15, revenue: 375 },
+        { date: "2024-07-03", item: "Vada Pav", quantity: 40, revenue: 800 },
+        { date: "2024-07-03", item: "Dosa", quantity: 35, revenue: 1050 },
+        // Add more dummy data as needed
+      ];
 
-      function renderOrders() {
-        const tableBody = document.getElementById("order-table-body");
-        tableBody.innerHTML = ""; // Clear existing rows
+      function generateReport() {
+        const startDate = new Date(document.getElementById("start-date").value);
+        const endDate = new Date(document.getElementById("end-date").value);
 
-        orders.forEach((order, index) => {
+        if (isNaN(startDate) || isNaN(endDate) || startDate > endDate) {
+          alert("Please enter a valid date range.");
+          return;
+        }
+
+        // Filter sales data based on the date range
+        const filteredData = salesData.filter((item) => {
+          const itemDate = new Date(item.date);
+          return itemDate >= startDate && itemDate <= endDate;
+        });
+
+        displayReport(filteredData);
+      }
+
+      function displayReport(data) {
+        const reportTableBody = document.querySelector("#report-table tbody");
+        const chartContainer = document.getElementById("chart-container");
+        const ctx = document.createElement("canvas");
+
+        // Clear existing table rows
+        reportTableBody.innerHTML = "";
+
+        // Populate the table with filtered data
+        data.forEach((item) => {
           const row = document.createElement("tr");
 
-          const orderIdCell = document.createElement("td");
-          orderIdCell.textContent = order.id;
-          row.appendChild(orderIdCell);
+          const dateCell = document.createElement("td");
+          dateCell.textContent = item.date;
+          row.appendChild(dateCell);
 
-          const statusCell = document.createElement("td");
-          statusCell.textContent = order.status;
-          row.appendChild(statusCell);
+          const itemCell = document.createElement("td");
+          itemCell.textContent = item.item;
+          row.appendChild(itemCell);
 
-          const actionsCell = document.createElement("td");
+          const quantityCell = document.createElement("td");
+          quantityCell.textContent = item.quantity;
+          row.appendChild(quantityCell);
 
-          const updateButton = document.createElement("button");
-          updateButton.textContent = "Update Status";
-          updateButton.className = "update";
-          updateButton.onclick = () => {
-            updateOrder(index);
-          };
-          actionsCell.appendChild(updateButton);
+          const revenueCell = document.createElement("td");
+          revenueCell.textContent = item.revenue.toFixed(2);
+          row.appendChild(revenueCell);
 
-          const deleteButton = document.createElement("button");
-          deleteButton.textContent = "Delete";
-          deleteButton.className = "delete";
-          deleteButton.onclick = () => {
-            deleteOrder(index);
-          };
-          actionsCell.appendChild(deleteButton);
-
-          row.appendChild(actionsCell);
-          tableBody.appendChild(row);
+          reportTableBody.appendChild(row);
         });
-      }
 
-      function addOrder() {
-        const orderIdInput = document.getElementById("order-id");
-        const statusSelect = document.getElementById("order-status");
+        // Display the report section
+        document.getElementById("report-section").style.display = "block";
 
-        const id = orderIdInput.value.trim();
-        const status = statusSelect.value;
+        // Generate chart
+        chartContainer.innerHTML = ""; // Clear existing chart
+        chartContainer.appendChild(ctx);
 
-        if (id) {
-          orders.push({ id, status });
-          renderOrders();
-          orderIdInput.value = ""; // Clear the input
-        } else {
-          alert("Please enter an order ID");
-        }
-      }
-
-      function updateOrder(index) {
-        const newStatus = prompt(
-          "Enter new status (pending, in-progress, completed, canceled):"
-        );
-        if (newStatus) {
-          orders[index].status = newStatus;
-          renderOrders();
-        }
-      }
-
-      function deleteOrder(index) {
-        orders.splice(index, 1);
-        renderOrders();
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: data.map((item) => item.date),
+            datasets: [
+              {
+                label: "Total Revenue (₹)",
+                data: data.map((item) => item.revenue),
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
       }
     </script>
   </body>
