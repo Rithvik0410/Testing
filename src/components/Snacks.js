@@ -15,72 +15,54 @@ const Snacks = () => {
       price: 50,
       image:
         "https://www.todaystraveller.net/wp-content/uploads/2021/05/24-1024x769.jpeg",
-      description:
-        "A popular Indian street food consisting of small crispy puris filled with spiced potatoes, chickpeas, and tamarind chutney, topped with yogurt, sev, and spices.",
     },
     {
       name: "Samosa",
       price: 20,
       image:
         "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/12/samosa-recipe.jpg",
-      description:
-        "A Central Asian pastry filled with savory ingredients such as minced meat, onions, and spices, typically baked or fried until golden and crispy.",
     },
     {
       name: "Pani Puri",
       price: 30,
       image:
         "https://www.chefkunalkapur.com/wp-content/uploads/2021/09/CW0_7781-e1631068476630-1300x867.jpg?v=1631068280",
-      description:
-        "A beloved Indian street food consisting of hollow, crispy puris filled with spicy-tangy water (pani), tamarind chutney, chickpeas, and potatoes.",
     },
     {
       name: "Bhel Puri",
       price: 25,
       image:
         "https://www.cookshideout.com/wp-content/uploads/2016/09/Veg-Bhel_FI.jpg",
-      description:
-        "A delightful Indian snack made with puffed rice, vegetables like onions and tomatoes, tangy tamarind chutney, and a blend of spices, served crispy and refreshing.",
     },
     {
       name: "Sev Puri",
       price: 25,
       image:
         "https://cdn.tarladalal.com/members/9306/procstepimgs/sev_puri_dsc_6029-(1)-11-187085.jpg",
-      description:
-        "A popular Indian street food where crispy puris are topped with mashed potatoes, onions, tomatoes, tamarind chutney, and a generous sprinkling of fine sev (crispy chickpea flour noodles).",
     },
     {
       name: "Pav Bhaji",
       price: 40,
       image:
         "https://miro.medium.com/v2/resize:fit:1400/1*eGylbteKGLepWGU0HNJAKw.jpeg",
-      description:
-        "A delicious and spicy Indian street food dish consisting of a buttery, mashed vegetable (usually potato, tomato, and peas) curry served with soft bread rolls (pav).",
     },
     {
       name: "Papdi Chaat",
       price: 35,
       image:
         "https://ranveerbrar.com/wp-content/uploads/2023/04/Papdi-chaat.jpeg",
-      description:
-        "A flavorful Indian street food made with crispy fried dough wafers (papdi) topped with yogurt, tamarind chutney, chaat masala, and various other ingredients like potatoes, onions, and sev.",
     },
     {
       name: "Aloo Tikki Chaat",
       price: 30,
       image:
         "https://www.honeywhatscooking.com/wp-content/uploads/2020/10/Aloo-Tikki-Chaat61.jpg",
-      description:
-        "A popular Indian street food where spicy mashed potato patties (aloo tikki) are topped with yogurt, tamarind chutney, and chaat masala, creating a delightful mix of flavors and textures.",
     },
     {
       name: "Masala Puri",
       price: 30,
       image:
         "https://www.vegrecipesofindia.com/wp-content/uploads/2017/10/masala-puri-chaat-recipe28.jpg",
-      description:
-        "A South Indian dish where crispy puris are topped with a spicy and tangy gravy made from dried peas, often garnished with onions, tomatoes, sev, and cilantro.",
     },
     // Add more products as needed
   ];
@@ -106,7 +88,7 @@ const Snacks = () => {
         <button
           className="blinking-live"
           onClick={() =>
-            (window.location.href = "http://localhost:3000/student.html")
+            (window.location.href = "http://localhost:3000/seat-status")
           }
         >
           LIVE
@@ -125,7 +107,7 @@ const Snacks = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{product.name}</h5>
-                  <p className="card-text">{product.description}</p>
+
                   <p className="card-text">
                     Price: {formatPrice(product.price)}
                   </p>
