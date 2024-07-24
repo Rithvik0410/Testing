@@ -1,43 +1,37 @@
-// src/components/Checkout.js
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "./CartContext";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Checkout.css";
+const Checkout = () => {
+  const { cart } = useContext(CartContext);
 
-const Checkout = ({ cart, total }) => {
+  // Calculate total price
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
   return (
     <div className="container mt-4">
-      <h2 className="text-center">Checkout</h2>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Price (₹)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart.length > 0 ? (
-            cart.map((item, index) => (
-              <tr key={index}>
-                <td>{item.name}</td>
-                <td>₹{item.price}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="2" className="text-center">
-                No items in the cart
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-      <div className="text-right">
-        <h4>Total: ₹{total.toFixed(2)}</h4>
+      <h1 className="text-center">Checkout</h1>
+      <div className="list-group">
+        {cart.map((item) => (
+          <div
+            key={item.name}
+            className="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <span>{item.name}</span>
+            <span>
+              {item.quantity} x ₹{item.price.toFixed(2)}
+            </span>
+          </div>
+        ))}
       </div>
-      <div className="text-center mt-4">
-        <button className="btn btn-primary proceed-to-payment">
+      <div className="mt-4 text-center">
+        <h3>Total: ₹{getTotalPrice().toFixed(2)}</h3>
+        <Link to="/payment" className="btn btn-primary mt-3">
           Proceed to Payment
-        </button>
+        </Link>
       </div>
     </div>
   );

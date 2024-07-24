@@ -1,8 +1,10 @@
 import React from "react";
-import "../Homepage.css"; // Make sure this path is correct
+import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../Homepage.css"; // Make sure this path is correct
 import "../prd-Homepage.css";
 import { Link } from "react-router-dom";
+
 const DesktopHomepage = () => {
   return (
     <div>
@@ -28,59 +30,38 @@ const DesktopHomepage = () => {
           TODAY'S SPECIAL
         </h2>
 
-        <div
-          id="specialCarousel"
-          className="carousel slide mb-4"
-          data-ride="carousel"
-        >
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                src="https://orikaflavours.com/cdn/shop/articles/lndscpe.jpg?v=1695577046"
-                className="d-block w-100 h-70"
-                alt="Special 1"
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2021/09/Gobi-Manchurian.jpg"
-                className="d-block w-100 h-70"
-                alt="Special 2"
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://www.dwarakaorganic.com/wp-content/uploads/2024/02/Dahi-Puri-870x470.webp"
-                className="d-block w-100 h-70"
-                alt="Special 3"
-              />
-            </div>
-          </div>
-          <a
-            className="carousel-control-prev"
-            href="#specialCarousel"
-            role="button"
-            data-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#specialCarousel"
-            role="button"
-            data-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Next</span>
-          </a>
-        </div>
+        <Carousel className="mb-4">
+          <Carousel.Item>
+            <img
+              src="https://orikaflavours.com/cdn/shop/articles/lndscpe.jpg?v=1695577046"
+              className="d-block w-100 h-70"
+              alt="Special 1"
+            />
+            <Carousel.Caption>
+              <h3>Special 1</h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              src="https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2021/09/Gobi-Manchurian.jpg"
+              className="d-block w-100 h-70"
+              alt="Special 2"
+            />
+            <Carousel.Caption>
+              <h3>Special 2</h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              src="https://www.dwarakaorganic.com/wp-content/uploads/2024/02/Dahi-Puri-870x470.webp"
+              className="d-block w-100 h-70"
+              alt="Special 3"
+            />
+            <Carousel.Caption>
+              <h3>Special 3</h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
 
         <div className="row">
           <div className="col-md-4">
