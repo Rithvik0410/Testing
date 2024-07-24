@@ -88,7 +88,7 @@ const Snacks = () => {
         <button
           className="blinking-live"
           onClick={() =>
-            (window.location.href = "http://localhost:3001/student.html")
+            (window.location.href = "http://localhost:3004/student.html")
           }
         >
           LIVE
