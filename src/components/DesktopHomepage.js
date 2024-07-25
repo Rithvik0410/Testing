@@ -1,11 +1,18 @@
 import React from "react";
+import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Homepage.css"; // Make sure this path is correct
 import "../prd-Homepage.css";
 import { Link } from "react-router-dom";
+import FeedbackForm from "./Feedback";
 
 const DesktopHomepage = () => {
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false);
+
+  const handleShowFeedbackForm = () => setShowFeedbackForm(true);
+  const handleCloseFeedbackForm = () => setShowFeedbackForm(false);
+
   return (
     <div>
       <header className="bg text-white d-flex justify-content-between align-items-center py-3 px-4">
@@ -107,6 +114,14 @@ const DesktopHomepage = () => {
             </Link>
           </div>
         </div>
+        <button
+          className="btn btn-primary mt-4"
+          onClick={handleShowFeedbackForm}
+        >
+          Give Feedback
+        </button>
+
+        {showFeedbackForm && <FeedbackForm onClose={handleCloseFeedbackForm} />}
       </div>
 
       <footer className="bg-dark text-white text-center py-3 mt-4">
