@@ -91,7 +91,7 @@ const Lunch = () => {
         id="head"
       >
         <img
-          src="http://sahyadri.edu.in/img/logo.png"
+          src="https://azpireeducations.com/uploads/institutions/70d61dcea2bd2f4649c18bc0f341302e.png"
           alt="Logo"
           className="header-logo"
         />

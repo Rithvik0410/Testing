@@ -17,7 +17,7 @@ const DesktopHomepage = () => {
     <div>
       <header className="bg text-white d-flex justify-content-between align-items-center py-3 px-4">
         <img
-          src="http://sahyadri.edu.in/img/logo.png"
+          src="https://azpireeducations.com/uploads/institutions/70d61dcea2bd2f4649c18bc0f341302e.png"
           alt="Logo"
           className="header-logo"
         />

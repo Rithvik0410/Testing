@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Main = () => {
   const navigate = useNavigate(); // Initialize useNavigate hook
@@ -8,10 +8,10 @@ const Main = () => {
     // Redirection logic based on user agent
     if (/Mobi|Android/i.test(navigator.userAgent)) {
       // Navigate to the mobile homepage
-      navigate('/mobile-homepage');
+      navigate("/special-offers");
     } else {
       // Navigate to the desktop homepage
-      navigate('/desktop-homepage');
+      navigate("/desktop-homepage");
     }
   }, [navigate]);
 
