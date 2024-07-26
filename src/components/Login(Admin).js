@@ -13,7 +13,7 @@ const Login = () => {
       .post("http://localhost:3005/login", { email, password })
       .then((response) => {
         localStorage.setItem("token", response.data.token);
-        window.location.href = "./admin.html"; // Redirect on successful login
+        window.location.href = "admin.html"; // Redirect on successful login
       })
       .catch((error) => console.log(error));
   };
