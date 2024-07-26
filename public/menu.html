@@ -305,5 +305,50 @@
         }
       }
     </script>
+    <script>
+      function incrementQuantity(id) {
+        var input = document.getElementById(id);
+        var value = parseInt(input.value);
+        input.value = value + 1;
+        localStorage.setItem(id, input.value); // Save to local storage
+      }
+
+      function decrementQuantity(id) {
+        var input = document.getElementById(id);
+        var value = parseInt(input.value);
+        if (value > 0) {
+          input.value = value - 1;
+          localStorage.setItem(id, input.value); // Save to local storage
+        }
+      }
+
+      function checkStock() {
+        var items = [
+          "chicken-biryani",
+          "paneer-butter-masala",
+          "chole-bhature",
+          "rasam-rice",
+          "naan",
+          "veg-thali",
+          "non-veg-thali",
+          "gobi-manchurian",
+          "chicken-kebab",
+          "curd-rice",
+          "fish-curry",
+        ];
+
+        items.forEach(function (item) {
+          var quantity = localStorage.getItem(item);
+          if (quantity === "0") {
+            localStorage.setItem(item + "-status", "out-of-stock"); // Set status to out-of-stock
+          } else {
+            localStorage.setItem(item + "-status", "in-stock"); // Set status to in-stock
+          }
+        });
+      }
+
+      // Call checkStock to update the stock status when the page loads
+      window.onload = checkStock;
+    </script>
   </body>
 </html>

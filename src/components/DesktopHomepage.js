@@ -60,7 +60,7 @@ const DesktopHomepage = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
-              src="https://www.dwarakaorganic.com/wp-content/uploads/2024/02/Dahi-Puri-870x470.webp"
+              src="https://img.freepik.com/premium-photo/irresistible-sev-puri-dahi-puri-popular-fast-dahi-puri-picture-photography_1020697-126076.jpg"
               className="d-block w-100 h-70"
               alt="Special 3"
             />

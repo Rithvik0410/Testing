@@ -8,7 +8,7 @@ const Main = () => {
     // Redirection logic based on user agent
     if (/Mobi|Android/i.test(navigator.userAgent)) {
       // Navigate to the mobile homepage
-      navigate("/special-offers");
+      navigate("/desktop-homepage");
     } else {
       // Navigate to the desktop homepage
       navigate("/desktop-homepage");

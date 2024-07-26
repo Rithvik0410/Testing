@@ -22,6 +22,7 @@ const Checkout = () => {
       })),
       total: getTotalPrice(),
     };
+    // Store the cart data to localStorage
     localStorage.setItem("cartData", JSON.stringify(cartData));
   };
 

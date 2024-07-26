@@ -20,13 +20,13 @@ const Lunch = () => {
       name: "Paneer Butter Masala",
       price: 70,
       image:
-        "https://www.cookwithmanali.com/wp-content/uploads/2021/08/Paneer-Butter-Masala-6.jpg",
+        "https://www.vegrecipesofindia.com/wp-content/uploads/2020/01/paneer-butter-masala-5.jpg",
     },
     {
       name: "Chole Bhature",
       price: 60,
       image:
-        "https://www.vegrecipesofindia.com/wp-content/uploads/2016/05/chole-bhature-recipe-6.jpg",
+        "https://media.vogue.in/wp-content/uploads/2020/08/chole-bhature-recipe.jpg",
     },
     {
       name: "Rasam Rice",
