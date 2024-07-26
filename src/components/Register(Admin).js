@@ -18,7 +18,7 @@ function Register() {
       .post("http://localhost:3005/register", { name, email, password })
       .then((result) => {
         console.log(result);
-        window.location.href = "/login"; // Redirect on successful registration
+        window.location.href = "/login1"; // Redirect on successful registration
       })
       .catch((err) => console.log(err));
   };
